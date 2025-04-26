@@ -1,16 +1,23 @@
-#grid {
+
+
+.grid-box {
     border: solid 1px black;
+    aspect-ratio: 1/1;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.grid-box {
-    border: solid 1px red;
+.letter {
+    aspect-ratio: 1/1;
+    height: 60px;
 }
 
-button {
-    display: block;
+.action {
+    aspect-ratio: 1/1;
+    height: 60px;
 }
 
-.grid-box {
-    height: 35px;
-    width: 100%;
-}
+
+
