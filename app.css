@@ -2,6 +2,15 @@
     border: solid 1px black;
 }
 
-#grid-box {
+.grid-box {
     border: solid 1px red;
+}
+
+button {
+    display: block;
+}
+
+.grid-box {
+    height: 35px;
+    width: 100%;
 }
