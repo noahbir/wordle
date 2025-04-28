@@ -1,8 +1,21 @@
 let gridCount = 1;
 let currentWord = "";
-let solution = "QWERT";
+let solution = "GIPSY";
 let row = 1;
 let status = true;
+
+document.addEventListener('keydown', function(event) {
+    if (/^[a-z]$/i.test(event.key)) {
+        letterPress(event.key.toUpperCase());
+    } else if(event.key == "Enter") {
+        checkWord();
+    }
+})
+
+
+
+
+
 
 function letterPress(id) {
     if(status) {
@@ -12,7 +25,6 @@ function letterPress(id) {
         console.log(currentWord);
         if(row*5 == gridCount-1) {
             status = false;
-            row++;
         }
     }
 }
@@ -34,11 +46,14 @@ function checkWord() {
         for(let i = 1; i <= 5; i++) {
             let gridBox = document.getElementById(gridCount-i);
             gridBox.style.backgroundColor = 'green';
+            let button = document.getElementById(gridBox.innerText);
+            button.style.background = "green";
         }
-        status = true;
     } else if((gridCount-1) % 5 == 0){
+        console.log('test');
         updateCorrectLetter();
         status = true;
+        row++;
     } 
 }
 
@@ -46,13 +61,29 @@ function updateCorrectLetter() {
     for(let i = 1; i <= 5; i++) {
         let gridBox = document.getElementById(gridCount-i);
         let letter = gridBox.innerText;
-        
-
-
-        if(solution.contains(letter)) {
-            if(solution.indexOf(letter) == gridCount)
+        let button = document.getElementById(letter);
+        if(solution.includes(letter)) {
+            let indexOfGridBox = (gridCount-i) - ((row-1)*5);
+            let backgroundColor = button.style.background;
+            console.log(backgroundColor);
+            if((solution.indexOf(letter)+1) == indexOfGridBox) {
+                gridBox.style.backgroundColor = 'green';
+                button.style.background = "green";
+                for(let i = 1; i <= 5; i++) {
+                    let tempGridBox = document.getElementById(gridCount-i);
+                    if(letter == tempGridBox.innerText && gridBox != tempGridBox) {
+                        tempGridBox.style.backgroundColor = 'grey';
+                    }
+                }
+            } else if(!(backgroundColor == "green")){
+                gridBox.style.backgroundColor = 'yellow';
+                button.style.background = "yellow";
+            } else {
+                gridBox.style.backgroundColor = 'grey';
+            }
         } else {
             gridBox.style.backgroundColor = 'grey';
+            button.style.background = "grey";
         }
     }
 }
