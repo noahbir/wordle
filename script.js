@@ -9,13 +9,10 @@ document.addEventListener('keydown', function(event) {
         letterPress(event.key.toUpperCase());
     } else if(event.key == "Enter") {
         checkWord();
+    } else if(event.key == "Backspace") {
+        removeLetter();
     }
 })
-
-
-
-
-
 
 function letterPress(id) {
     if(status) {
@@ -50,7 +47,6 @@ function checkWord() {
             button.style.background = "green";
         }
     } else if((gridCount-1) % 5 == 0){
-        console.log('test');
         updateCorrectLetter();
         status = true;
         row++;
@@ -65,7 +61,6 @@ function updateCorrectLetter() {
         if(solution.includes(letter)) {
             let indexOfGridBox = (gridCount-i) - ((row-1)*5);
             let backgroundColor = button.style.background;
-            console.log(backgroundColor);
             if((solution.indexOf(letter)+1) == indexOfGridBox) {
                 gridBox.style.backgroundColor = 'green';
                 button.style.background = "green";
